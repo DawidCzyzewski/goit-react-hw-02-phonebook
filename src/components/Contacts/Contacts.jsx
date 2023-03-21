@@ -8,24 +8,24 @@ export class Contacts extends Component {
     return (
       <>
         <ul>
-          {contacts.map(contact => {
-            if (contact.name.toLowerCase().includes(filter.toLowerCase())) {
+          {contacts.forEach(({ number, name, id }) => {
+            if (name.toLowerCase().includes(filter.toLowerCase())) {
               return (
-                <>
-                  <li key={contact.id}>
-                    {contact.name}: {contact.number}
+                <li>
+                  <li key={id}>
+                    {name}: {number}
                   </li>
                   <button
-                    key={contact.id}
+                    key={id}
                     type="button"
                     onClick={() => {
                       //   console.log(contact.id);
-                      remove(contact.id);
+                      remove(id);
                     }}
                   >
                     Delete contact
                   </button>
-                </>
+                </li>
               );
             }
           })}

@@ -42,10 +42,9 @@ export class Form extends Component {
   render() {
     const { name, contacts } = this.props;
     // console.log(contacts);
-    contacts.map(contact => {
+    contacts.forEach(contact => {
       // console.log(contact.name);
       // console.log(this.state.name);
-
       if (this.state.name) {
         if (
           contact.name.toLowerCase() === this.state.name.toLowerCase() &&
