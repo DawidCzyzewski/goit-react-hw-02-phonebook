@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { DebounceInput } from 'react-debounce-input';
 
 export class Filter extends Component {
   searchContact = e => {
@@ -9,12 +10,13 @@ export class Filter extends Component {
     return (
       <>
         <h3>Search in your contacts</h3>
-        <input
+        <DebounceInput
+          debounceTimeout={1000}
           type="text"
           name="filter"
           title="filter"
           onChange={this.searchContact}
-        ></input>
+        />
       </>
     );
   }

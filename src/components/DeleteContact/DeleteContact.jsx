@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { Contacts } from 'components/Contacts/Contacts';
 
 export class DeleteContact extends Component {
   render() {

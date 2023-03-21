@@ -3,6 +3,7 @@ import { Section } from './Section/Section';
 import { Form } from './Form/Form';
 import { Filter } from './Filter/Filter';
 import { Contacts } from './Contacts/Contacts';
+import { Notify } from 'notiflix';
 
 export class App extends Component {
   state = {
@@ -35,7 +36,7 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== obj),
     }));
-    Notify.success(`${this.objectToDelete} was deleted.`);
+    Notify.success(`Contact "${objectToDelete}" was deleted.`);
   };
 
   render() {

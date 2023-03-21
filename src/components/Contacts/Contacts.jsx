@@ -19,7 +19,7 @@ export class Contacts extends Component {
                     key={contact.id}
                     type="button"
                     onClick={() => {
-                      console.log(contact.id);
+                      //   console.log(contact.id);
                       remove(contact.id);
                     }}
                   >

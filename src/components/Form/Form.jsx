@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { Notify } from 'notiflix';
+import { DebounceInput } from 'react-debounce-input';
 
 export class Form extends Component {
   state = {
@@ -43,18 +45,36 @@ export class Form extends Component {
     contacts.map(contact => {
       // console.log(contact.name);
       // console.log(this.state.name);
+
       if (this.state.name) {
-        contact.name.toLowerCase() === this.state.name.toLowerCase()
-          ? console.log('Found', contact.name)
-          : console.log('Can not found this name');
-      } else {
-        console.log('Please enter name');
+        if (
+          contact.name.toLowerCase() === this.state.name.toLowerCase() &&
+          contact.number !== this.state.number
+        ) {
+          Notify.failure(
+            `Contact "${contact.name}" is found but number is not.`
+          );
+        } else if (
+          contact.name.toLowerCase() === this.state.name.toLowerCase() &&
+          contact.number !== this.state.number
+        ) {
+          Notify.failure(`Contact with number "${contact.number}" is in book.`);
+        } else if (
+          contact.name.toLowerCase() === this.state.name.toLowerCase() &&
+          contact.number === this.state.number
+        ) {
+          Notify.success(`Contact "${contact.name}" is in book.`);
+        }
+      } else if (!this.state.name) {
+        Notify.info(`Please enter name`);
       }
     });
+
     return (
       <>
         <form>
-          <input
+          <DebounceInput
+            debounceTimeout={1000}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -63,7 +83,8 @@ export class Form extends Component {
             value={name}
             required
           />
-          <input
+          <DebounceInput
+            debounceTimeout={1000}
             type="num"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
