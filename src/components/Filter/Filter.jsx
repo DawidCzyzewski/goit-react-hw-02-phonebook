@@ -1,7 +1,11 @@
 import { Component } from 'react';
 import { DebounceInput } from 'react-debounce-input';
+import PropTypes from 'prop-types';
 
 export class Filter extends Component {
+  static propTypes = {
+    onChange: PropTypes.func,
+  };
   searchContact = e => {
     // console.log(e.target.value);
     this.props.onChange(e.target.value);

@@ -1,6 +1,12 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 
 export class Contacts extends Component {
+  static propTypes = {
+    contacts: PropTypes.array,
+    remove: PropTypes.func,
+    filter: PropTypes.string,
+  };
   render() {
     const { contacts, remove, filter } = this.props;
 

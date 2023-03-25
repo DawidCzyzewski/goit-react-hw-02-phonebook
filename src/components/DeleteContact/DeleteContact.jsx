@@ -1,6 +1,10 @@
 import { Component } from 'react';
 
 export class DeleteContact extends Component {
+  static propTypes = {
+    key: PropTypes.number.isRequired,
+    removeItem: PropTypes.func.isRequired,
+  };
   render() {
     const { key, removeItem } = this.props;
     return (
